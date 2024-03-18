@@ -1,73 +1,71 @@
 #include <iostream>
 using namespace std;
 
+bool userWantsToContinue()
+{
+    int option;
+    cout << "Продолжить - 1" << endl;
+    cout << "Выход - 2" << endl;
+    cin >> option;
+    return option == 1;
+}
 
-void main()
+int main()
 {
 
-	char action;
-	double firstnumber;
-	double secondnumber;
-	double result;
-	int option;
+    char action;
+    double firstnumber;
+    double secondnumber;
+    double result;
 
+    do
+    {
+        setlocale(LC_ALL, "Russian");
+        cout << "Whassup homie" << endl;
+        cout << "Напиши первое число сюда!" << endl;
 
-	do
+        while (!(cin >> firstnumber))
+        {
+            cout << "Ты тупой? Пиши число!" << endl;
+            cin.clear();
+            cin.ignore(32767, '\n');
+        }
 
-	{
+        cout << "А сюда второе число!" << endl;
 
+        while (!(cin >> secondnumber))
+        {
+            cout << "Ты тупой? Пиши число!" << endl;
+            cin.clear();
+            cin.ignore(32767, '\n');
+        }
 
+        cout << "Напиши математический знак" << endl;
 
+        cin >> action;
 
-		setlocale(LC_ALL, "Russian");
-		cout << "Whassup homie" << endl;
-		cout << "Напиши первое число сюда!" << endl;
-		cin >> firstnumber;
-		cout << "Напиши математический знак" << endl;
-		cin >> action;
+        switch (action)
+        {
+        case '+':
+            cout << firstnumber + secondnumber << endl;
+            break;
+        case '-':
+            cout << firstnumber - secondnumber << endl;
+            break;
 
-		switch (action)
-		{
-		case '+':
-			cout << "А сюда второе чисдло!" << endl;
-			cin >> secondnumber;
-			cout << firstnumber + secondnumber << endl;
-			break;
+        case '*':
+            cout << firstnumber * secondnumber << endl;
+            break;
+        case '/':
+            cout << firstnumber / secondnumber << endl;
+            break;
+        default:
+            cout << "Ошибка! Я умею считать только умножение, деление, сложение или вычитание!" << endl;
+            break;
+        }
+    }
 
-		case '-':
-			cout << "А сюда второе число!" << endl;
-			cin >> secondnumber;
-			cout << firstnumber - secondnumber << endl;
-			break;
-
-		case '*':
-			cout << "А сюда второе число!" << endl;
-			cin >> secondnumber;
-			cout << firstnumber * secondnumber << endl;
-			break;
-
-		case '/':
-			cout << "А сюда второе число!" << endl;
-			cin >> secondnumber;
-			cout << firstnumber / secondnumber << endl;
-			break;
-
-
-		default:
-			cout << "Ошибка! Я умею считать только умножение, деление, сложение или вычитание!" << endl;
-			system("pause");
-			break;
-
-
-		}
-		cout << "Продолжить - 1" << endl;
-		cout << "Выход - 2" << endl;
-		cin >> option;
-
-	} while (option == 1);
-
-
-
-
-
+    while (userWantsToContinue());
+    return 0;
 }
+			
