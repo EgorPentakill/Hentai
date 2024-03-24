@@ -1,6 +1,15 @@
 #include <iostream>
 using namespace std;
-
+struct Expressions {
+        float a;
+        float b;
+        char c;
+        float d;
+    };
+char action;
+float firstnumber;
+float secondnumber;
+float result;
 bool userWantsToContinue()
 {
     int option;
@@ -9,63 +18,86 @@ bool userWantsToContinue()
     cin >> option;
     return option == 1;
 }
-
-int main()
+Expressions readExpressions()
 {
+    Expressions exp;
+    exp.a = firstnumber;
+    exp.b = secondnumber;
+    exp.c = action;
+    cout << "Whassup homie" << '\n';
+    cout << "Напиши первое число сюда!" << '\n';
 
-    char action;
-    double firstnumber;
-    double secondnumber;
-    double result;
-
-    do
+    while (!(cin >> exp.a))
     {
-        setlocale(LC_ALL, "Russian");
-        cout << "Whassup homie" << endl;
-        cout << "Напиши первое число сюда!" << endl;
-
-        while (!(cin >> firstnumber))
-        {
-            cout << "Ты тупой? Пиши число!" << endl;
-            cin.clear();
-            cin.ignore(32767, '\n');
-        }
-
-        cout << "А сюда второе число!" << endl;
-
-        while (!(cin >> secondnumber))
-        {
-            cout << "Ты тупой? Пиши число!" << endl;
-            cin.clear();
-            cin.ignore(32767, '\n');
-        }
-
-        cout << "Напиши математический знак" << endl;
-
-        cin >> action;
-
-        switch (action)
-        {
-        case '+':
-            cout << firstnumber + secondnumber << endl;
-            break;
-        case '-':
-            cout << firstnumber - secondnumber << endl;
-            break;
-
-        case '*':
-            cout << firstnumber * secondnumber << endl;
-            break;
-        case '/':
-            cout << firstnumber / secondnumber << endl;
-            break;
-        default:
-            cout << "Ошибка! Я умею считать только умножение, деление, сложение или вычитание!" << endl;
-            break;
-        }
+        cout << "Ты тупой? Пиши число!" << '\n';
+        cin.clear();
+        cin.ignore(32767, '\n');
     }
 
-    while (userWantsToContinue());
-    return 0;
+    cout << "А сюда второе число!" << '\n';
+
+    while (!(cin >> exp.b))
+    {
+        cout << "Ты тупой? Пиши число!" << '\n';
+        cin.clear();
+        cin.ignore(32767, '\n');
+    }
+
+    cout << "Напиши математический знак" << '\n';
+
+    cin >> exp.c;
+    return exp;
 }
+float calculateExpressions(Expressions exp)
+{
+    exp.d = result;
+    switch (exp.c)
+    {
+    case '+':
+        result = exp.a + exp.b;
+       
+        break;
+    case '-':
+        result = exp.a - exp.b;
+        
+        break;
+    case '*':
+        result = exp.a * exp.b;
+        
+        break;
+    case '/':
+        result = exp.a / exp.b;
+       
+        break;
+    default:
+        cout << "Ошибка! Я умею считать только умножение, деление, сложение или вычитание!" << endl;
+        break;
+    }
+    return result;
+}
+void printResult(float result)
+{
+    cout << result << endl;
+}
+void makeSomeCalculations()
+{
+    Expressions exp = readExpressions();
+    result = calculateExpressions(exp);
+    printResult(result);
+}
+
+
+    int main()
+    {
+        setlocale(LC_ALL, "Russian");
+        do
+        {
+            makeSomeCalculations();
+        }
+
+        while (userWantsToContinue());
+        return 0;
+
+    }
+
 			
